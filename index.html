@@ -226,7 +226,7 @@ const blinkN=r=>edit(r,[[8,5,'s'],[8,10,'s'],[9,5,'k'],[9,10,'k']]);
 const SP={};
 function buildSprites(){
   const pair=(rows,pal,bl)=>[mk(rows,pal),mk(bl(rows),pal)];
-  SP.nachoL=pair(edit(NACHO_R,[[8,4,'L'],[8,6,'L'],[8,7,'L'],[8,8,'L'],[8,9,'L'],[8,11,'L'],[9,4,'L'],[9,6,'L'],[9,9,'L'],[9,11,'L'],[10,4,'L'],[10,5,'L'],[10,6,'L'],[10,9,'L'],[10,10,'L'],[10,11,'L']]),{...PN,L:'#191321'},blinkN);
+  SP.nachoL=pair(NACHO_R.map((r,i)=>i===7?'..kLLLLssLLLLk..':i===8?'..kLGeLLLLeGLk..':i===9?'..kLseLssLesLk..':i===10?'..kLLLLssLLLLk..':r),{...PN,L:'#463c55',G:'#cfe6f5'},blinkN);
   SP.vale=pair(VALE_R,PV,blinkV);SP.alicia=pair(ALI_R,PV,blinkV);SP.nacho=pair(NACHO_R,PN,blinkN);SP.poli=pair(POLI_R,PN,blinkN);
   SP.amigo=pair(NACHO_R,{...PN,d:'#7a4a2a',D:'#9a6a4a',K:'#4f8a5b',T:'#efe6d6',B:'#3f4f7a'},blinkN);
   SP.pablo=pair(NACHO_R,{...PN,d:'#c99a5a',D:'#e0b97a',K:'#c75b5b',T:'#f1e3c8',B:'#4a4458'},blinkN);
@@ -389,6 +389,7 @@ function Story(cfg){const A={};
     if(typeof s==='string'){const m=/^([NVYAP]):\s*([\s\S]*)$/.exec(s);if(m){Dlg.show(m[1],m[2],next);}else Dlg.show('N',s,next);return;}
     if(s.mostrar){if(A[s.mostrar])A[s.mostrar].vis=true;return next();}
     if(s.ocultar){if(A[s.ocultar])A[s.ocultar].vis=false;return next();}
+    if(s.poner){const a=A[s.poner];if(a){a.tw=null;a.x=s.x;a.y=s.y;a.vis=true;}return next();}
     if(s.mover){const a=A[s.mover];if(!a)return next();a.vis=true;moveTo(a,s.x,s.y,s.vel||90,next);AU.sfx('step');return;}
     if(s.emo){const a=A[s.emo];const map={corazon:'corazon',enojo:'enojo',gota:'gota',excl:'excl',zzz:'zzz'};if(a)a.emo={k:map[s.tipo]||'corazon',t:1.8};if(s.tipo==='corazon')AU.sfx('heart');return next();}
     if(s.temblar){const a=A[s.temblar];if(a)a.shake=1.5;return next();}
@@ -609,13 +610,13 @@ MG.puente=onWin=>{const V=actor('V',{x:30,y:176}),N=actor('Y',{x:162,y:176}),wor
       if(y<240){const i=placed.findIndex(s=>!s)<0?placed.length:placed.findIndex(s=>!s);if(i>=NP)return;placed[i]=p;p.fly={t:0,fx:p.x,fy:p.y,tx:60+i*SW+(SW-1)/2,ty:178.5};AU.sfx('place');
         if(placed.filter(Boolean).length>=NP){done=true;AU.sfx('win');setTimeout(()=>{FX.hearts(96,150,16);setTimeout(onWin,900);},500);}else spawnP();}
       else p.y=clamp(y,272,322);}};};
-MG.cita=onWin=>{const N=actor('Y',{x:44,y:272}),V=actor('V',{x:62,y:272}),obs=[],food=[],GOAL=2100;let dist=0,jy=0,vy=0,slow=0,pollos=0,done=false,chip;
+MG.cita=onWin=>{const N=actor('Y',{x:50,y:272}),V=actor('V',{x:62,y:272}),obs=[],food=[],GOAL=2100;let dist=0,jy=0,vy=0,slow=0,pollos=0,done=false,chip;
   for(let x=260;x<GOAL-80;x+=rand(110,170)){obs.push({x,k:Math.random()<.55?'charco':'cono'});if(Math.random()<.7)food.push({x:x+rand(40,70),y:Math.random()<.5?222:248});}
   const sky=cached('calleCielo',c=>{bands(c,0,272,NIGHT.slice(0,7));moon(c,152,40);});
   return{enter(){AU.play('nivel');HUD.mute();chip=HUD.chip('#hudC','');},
-    update(dt){if(done)return;const v=slow>0?32:72;slow-=dt;dist+=v*dt;vy+=560*dt;jy+=vy*dt;if(jy>0){jy=0;vy=0;}N.walk=V.walk=jy===0?1:0;
-      for(const o of obs){const sx=o.x-dist;if(!o.hit&&sx>22&&sx<70&&jy>-8){o.hit=1;slow=.6;N.shake=V.shake=.5;AU.sfx('bonk');N.emo={k:'gota',t:.8};}}
-      for(const f of food){const sx=f.x-dist;if(!f.got&&Math.abs(sx-54)<16&&Math.abs((272+jy-24)-f.y)<22){f.got=1;pollos++;AU.sfx('catch');}}
+    update(dt){if(done)return;const v=slow>0?32:72;slow-=dt;dist+=v*dt;vy+=500*dt;jy+=vy*dt;if(jy>0){jy=0;vy=0;}N.walk=V.walk=jy===0?1:0;
+      for(const o of obs){const sx=o.x-dist;if(!o.hit&&sx>44&&sx<68&&jy>-6){o.hit=1;slow=.6;N.shake=V.shake=.5;AU.sfx('bonk');N.emo={k:'gota',t:.8};}}
+      for(const f of food){const sx=f.x-dist;if(!f.got&&Math.abs(sx-56)<18&&Math.abs((272+jy-24)-f.y)<22){f.got=1;pollos++;AU.sfx('catch');}}
       updActor(N,dt);updActor(V,dt);N.y=V.y=272+jy;chip.textContent='🍗 '+pollos+'  ·  '+Math.min(100,Math.round(dist/GOAL*100))+'%';
       if(dist>=GOAL){done=true;AU.sfx('win');FX.hearts(54,220,14);setTimeout(onWin,1000);}},
     draw(c,t){c.drawImage(sky,0,0);stars(c,t,40,120);const off=dist*.5;for(let k=Math.floor(off/34)-1;k<Math.floor(off/34)+8;k++){const r=srand(k*7+11),h=40+Math.floor(r()*70),x=Math.round(k*34-off);R(c,x,272-h,32,h,'#2a1d40');for(let wy=272-h+6;wy<266;wy+=9)for(let wx=x+4;wx<x+28;wx+=8)if(r()<.4)R(c,wx,wy,3,4,'#ffd36f');}
@@ -627,8 +628,9 @@ MG.cita=onWin=>{const N=actor('Y',{x:44,y:272}),V=actor('V',{x:62,y:272}),obs=[]
       drawActor(c,N,t);drawActor(c,V,t);},
     down(x,y){if(!SAVE.eggs.includes('mocho')){const px=700-dist*.5;if(x>px&&x<px+36&&y>176&&y<210)return egg('mocho');}
       if(!SAVE.eggs.includes('milka')){const mx=1400-dist;if(x>mx&&x<mx+40&&y>226&&y<256)return egg('milka');}
-      if(jy===0&&!done){vy=-215;AU.sfx('jump');}},
-    key(k){if(k===' '||k==='ArrowUp')this.down(0,0);}};};
+      if(jy===0&&!done){vy=-235;AU.sfx('jump');}},
+    key(k){if(k===' '||k==='ArrowUp')this.down(0,0);},
+    __st:()=>({dist,jy,hits:obs.filter(o=>o.hit).length,total:obs.length,next:(obs.find(o=>o.x-dist>44)||{x:1e9}).x-dist})};};
 MG.rosa=onWin=>{const M=["tttttttttttt","tggggggggggt","tghhhhhggcgt","tghhfhhggggt","tgggpggggtgt","ttggpgggggtt","tgggpggtgggt","twwwbwwwwwwt","twwwbwwwwwwt","tgggpgggzggt","tggtpggggggt","tgggppppgggt","tgtggggpggtt","tggggggpgggt","tggtgggpgggt","tgggggppgggt","tgvggggggtgt","tggggggggggt","tttttttttttt"];
   const Y0=38,TS=16,walk=ch=>'gpbv'.includes(ch),cx=c=>c*TS+8,cy=r=>Y0+r*TS+15;
   const V=actor('V',{sc:1,x:cx(2),y:cy(16)}),N=actor('Y',{sc:1,x:cx(5),y:cy(16)});let pos=[2,16],path=[],rose={c:10,r:13,flying:1,t:0},has=false,placed=false,chip;

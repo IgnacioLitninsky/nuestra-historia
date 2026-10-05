@@ -12,7 +12,7 @@ const TEXTOS = {
   capitulo: "Capítulo 1: Alicia y el policía",
   ella: "Vale",
   el: "Niño",                 // tu nombre en los diálogos
-  amigo: "Amigo",
+  amigo: "Fran",                // el que te avisó en la fiesta
   pablo: "El Mocho",
   rincon: "Nuestro rincón",
 
@@ -44,7 +44,7 @@ const TEXTOS = {
     { id: "cita", titulo: "Primera cita", fecha: "30/11/2024",
       teaser: "Una obra de arte, un auto que no llegó y un pollito frito.",
       premio: "Combo pomilón",
-      frase: "Vos pollito frito, yo hamburguesa (obvio). Y en la plaza, por fin, el beso.", foto: "" },
+      frase: "Vos pollito frito, yo hamburguesa. Y en la plaza, por fin, el beso.", foto: "" },
     { id: "rosa", titulo: "La rosa", fecha: "14/02/2025",
       teaser: "San Valentín sin ser novios. Un ramo, un helado y un servidor.",
       premio: "La rosa del portaobjetos",
@@ -63,7 +63,7 @@ const TEXTOS = {
     tiktok:      { emoji: "📱", titulo: "Las 3 AM", texto: "Estaba por irme a dormir. Menos mal que no me fui.", pista: "Alguien no soltaba el celular en la fiesta." },
     uber:        { emoji: "🚗", titulo: "Viaje terminado", texto: "¿Cómo calificás la noche? ★★★★★ (yo le doy 6).", pista: "Algo cruza la calle mientras escribís." },
     bubu:        { emoji: "🐻", titulo: "Bubucita", texto: "Vos sos Bubu, yo soy Dudu. No se discute.", pista: "Una tabla del puente brilla distinto." },
-    mocho:       { emoji: "🎨", titulo: "El Mocho", texto: "Artista y culpable de que te dejara sola 5 minutos. Perdón (no tanto).", pista: "Alguien saluda desde una ventana." },
+    mocho:       { emoji: "🎨", titulo: "El Mocho", texto: "Artista y culpable de que te dejara sola 5 minutos. Perdón.", pista: "Alguien saluda desde una ventana." },
     milka:       { emoji: "🐈‍⬛", titulo: "Milka", texto: "Milka se coló en la primera cita. Ahora vive en tu rincón.", pista: "Una gatita negra mira desde un muro." },
     puflito:     { emoji: "🐱", titulo: "Puflito", texto: "Tu hijo, durmiendo en el servidor. Lógico. Ahora duerme en tu rincón.", pista: "Alguien gordito duerme cerca del río." },
     cofre:       { emoji: "🎁", titulo: "El cofre", texto: "Regalos galácticos adentro de un cofre de cubitos. Esa sos vos.", pista: "En el servidor hay un cofre." },
@@ -73,34 +73,43 @@ const TEXTOS = {
     mora:        { emoji: "🐩", titulo: "Mora", texto: "¡Mora estaba abajo de la cama! Ya puede jugar en tu rincón.", pista: "Algo negrito se mueve abajo de la cama." }
   },
 
-  // Frasco para días tristes: se abre 1 por día. BORRADORES: pasalos a tus palabras.
+  // Frasco para días tristes: se abre 1 por día, al azar.
   // Podés agregar todos los que quieras (uno por línea, entre comillas, con coma al final).
   frasco: [
-    "Si estás leyendo esto, te aviso que sos la persona más linda que conozco. Y conozco a Benito.",
+    // Para recordarte tu valor
+    "Cada vez que dudes de vos misma, acordate de cómo te veo yo: sos la mujer más inteligente, valiente y brillante que conozco. Confío en vos a ciegas.",
+    "Admiro tu forma de enfrentar el mundo. Tenés una fuerza interior increíble y no hay meta que no puedas alcanzar. Dale para adelante, mi amor.",
+    "No midas tu valor por lo productiva que fuiste hoy. Valés muchísimo por tu corazón, por tu esencia y por ser quien sos.",
+    "Sos mi mayor orgullo. Ver cómo te esforzás día a día por lo que querés me inspira muchísimo. Vas a llegar lejísimos y yo voy a estar en primera fila aplaudiéndote.",
+    "Sos una combinación perfecta de ternura y fuerza. Nunca dejes que nada ni nadie te haga dudar de lo increíble y hermosa que sos.",
+    // Para los días de cansancio o tristeza
+    "Está bien si hoy sentís que no podés con todo. Date permiso para pausar y descansar. Acá estoy yo para sostener el mundo por vos un ratito.",
+    "Hoy puede ser un día difícil, pero sos mucho más fuerte que cualquier problema que se te cruce. Esto también va a pasar, te lo prometo.",
+    "Cerrá los ojos un segundo, respirá profundo e imaginate mi abrazo más fuerte. Ese que te dice en silencio que todo va a estar bien. Estoy con vos.",
+    "Un día gris no define la vida hermosa que estamos armando juntos. Mañana es otra oportunidad y, pase lo que pase, somos un equipo.",
+    "Si este papelito te encontró triste, quiero que sepas que tu sonrisa es mi lugar seguro. Tomate tu tiempo, pero nunca te olvides de lo inmensamente amada que sos.",
+    "Plan de emergencia: ramen, una peli y yo. Decime cuándo y voy.",
     "Respirá hondo. Ahora imaginá una salchipapa. ¿Ves? Ya estás un 10% mejor.",
+    // Para que te sientas especial y acompañada
+    "Si estás leyendo esto, es porque te extraño, te pienso y te amo. Que saberlo te acompañe hoy a todos lados y te dé energía.",
+    "Solo quería recordarte que me hacés el hombre más afortunado del mundo. Gracias por existir y por dejarme quererte tanto.",
+    "El mundo es un lugar mucho mejor porque estás vos, y mi vida es mil veces más feliz desde que caminamos juntos. Te amo con todo lo que soy.",
+    "No importa en qué momento del día leas esto: estoy pensando en vos y deseando que hoy seas tan feliz como me hacés a mí.",
+    "Me enamoro de vos todos los días un poco más. Gracias por ser mi compañera, mi paz y mi motivación más grande.",
     "Me acuerdo de tus ojos la noche de Alicia. Todavía me ponen nervioso.",
-    "Hoy toca: Seventeen a todo volumen y cantar mal. Yo te banco desde acá.",
-    "Sos inteligente, la peleás con todo y encima sos linda. Injusto para el resto.",
+    "Todavía me acuerdo de vos haciéndome de guía en Buenos Aires. La mejor guía del mundo.",
     "Abrazo de Dudu cargando... ██████ 100%. Recibido, Bubucita.",
     "Puflito te manda a decir que te ama. Yo también, pero él lo dijo primero.",
-    "Lo que sea que te pasó hoy no te define. Mañana seguís siendo mi Princesa.",
-    "Vale por un abrazo de los largos. Canjeable conmigo, sin vencimiento.",
-    "Si estás triste, avisame. Si estás aburrida, también. Si estás pomilona, llevo papas.",
-    "Gracias por esperarme todas las veces que el auto me falló. Fueron muchas.",
-    "Me encanta cómo te ponés cuando te enojás. No te enojes por esto.",
-    "Pensá en algo que hiciste bien esta semana. Ahora sumale que me tenés a mí. Ganaste.",
-    "Hoy no hace falta poder con todo. Con poder un poquito alcanza.",
-    "Todavía me acuerdo de vos haciéndome de guía en Buenos Aires. La mejor guía del mundo.",
-    "Plan de emergencia: ramen, una peli y yo. Decime cuándo y voy.",
-    "Te quiero un montón, Pekeña. Así de simple, sin chiste."
+    "Hoy toca: Seventeen a todo volumen y cantar mal. Yo te banco desde acá.",
+    "Vale por un abrazo de los largos. Canjeable conmigo, sin vencimiento."
   ],
 
   // Cartas que aparecen solas ese día (formato "MM-DD"). {anios} → «1 año», «2 años»...
   fechas: {
     "10-05": { titulo: "18 meses", texto: "Hoy cumplimos 18 meses. Este juego es mi regalo: tiene un pedacito de cada cosa que me hizo enamorarme de vos.", soloAnio: 2026 },
-    "10-26": { titulo: "El día que nos conocimos", texto: "Hoy hace {anios} que nos conocimos. Vos de Alicia, yo de policía y con las piernas temblando. Gracias a tu amiga por pasar el dato: la mejor jugada de la historia.", desde: 2024 },
+    "10-26": { titulo: "El día que nos conocimos", texto: "Hoy hace {anios} que nos conocimos en el cumple de Fran. Vos de Alicia, yo de policía y con las piernas temblando. Gracias a tu amiga por pasar el dato: la mejor jugada de la historia.", desde: 2024 },
     "11-30": { titulo: "Primera cita", texto: "Hoy hace {anios} de nuestra primera cita. El auto llegó tarde. Yo llegué enamorado.", desde: 2024 },
-    "02-14": { titulo: "San Valentín", texto: "Feliz San Valentín. El primero lo pasamos sin ser novios y yo ya estaba loco por vos.", desde: 2025 },
+    "02-14": { titulo: "San Valentín", texto: "Feliz San Valentín. El primero lo pasamos sin ser novios, y yo ya sabía que quería pasar todos con vos.", desde: 2025 },
     "04-05": { titulo: "Aniversario", texto: "Hoy cumplimos {anios} de novios. Gracias por decir que sí (y por no tocar el botón de No... tanto).", desde: 2025 },
     "05-26": { titulo: "¡Feliz cumple, Princesa!", texto: "Hoy el mundo festeja que existís. Yo lo festejo todos los días, pero hoy con torta." },
     "05-27": { titulo: "Cumple de tu Niño", texto: "Hoy cumple tu novio. Sí, el que te hizo este juego. Ya sabés qué hacer (salchipapa)." }
@@ -129,20 +138,16 @@ const TEXTOS = {
 
   // CARTA FINAL: BORRADOR. Pasala a tus palabras (cambiá, cortá, agregá).
   carta:
-`Vale:
+`Vale, mi princesa:
 
-Si llegaste hasta acá, cruzaste una fiesta llena de disfrazados, armaste un puente de mensajes, me esperaste (otra vez) porque el auto falló y armaste un tulipán de cubitos. O sea, hiciste lo mismo que en la vida real: tenerme paciencia.
+Si llegaste hasta acá, cruzaste una fiesta llena de disfrazados, armaste un puente de mensajes, me esperaste como siempre, porque siempre me falla algo (como el auto), y armaste un tulipán de cubitos. Hiciste lo mismo que en la vida real: tenerme paciencia.
 
-Esa noche del 26 de octubre yo me quería ir a dormir. Estaba solo, mirando el celular, sin saber que a unos metros estaba la Alicia más linda que vi en mi vida. Me temblaban las piernas cuando me acerqué. A veces, cuando me mirás, todavía me pasa.
+Hoy se cumple un año y medio desde que empezamos esta historia, y quiero recordarte siempre que te amo demasiado. Gracias por todo, mi princesa, por cada momento que pasamos juntos. Valoro cada detalle tuyo y todo lo que hacés por nosotros. Me hace muy feliz lo que somos, y quiero que sepas que mi mayor deseo es seguir construyendo más cosas juntos y compartir mil aventuras más.
 
-Me encanta la pasión que le ponés a todo, lo inteligente que sos, cómo la peleás y lo tierna que te ponés conmigo. Hasta cómo te ponés cuando te enojás (no se lo digas a nadie).
+Gracias por elegirme todos los días. Este fue el capítulo 1; los siguientes los vamos a seguir escribiendo juntos.
 
-Gracias por decirme que sí el 5 de abril y por elegirme todos los días desde entonces. Llevamos 18 meses y te sigo debiendo besos.
-
-Este fue el capítulo 1. Los que siguen los escribimos juntos, y el próximo destino lo elegimos los dos.
-
-Te amo, Princesa.`,
-  firma: "Nacho, tu Niño",
+Te amo, princesa.`,
+  firma: "Tu Niño",
   finCapitulo: { titulo: "Capítulo 1 completado", sub: "Capítulo 2: próximamente", nota: "El mapa todavía tiene lugares por descubrir.", proximoLugar: "Buenos Aires" }
 };
 
@@ -155,7 +160,7 @@ const GUION = {
   ],
   fiesta: {
     antes: [
-      "N: 26 de octubre de 2024. Cumpleaños de un amigo de un amigo (que terminó siendo amigo).",
+      "N: 26 de octubre de 2024. Cumpleaños de Fran.",
       "N: Fiesta de disfraces. 3 de la mañana.",
       { emo: "Y", tipo: "zzz" },
       "Y: Ya fue... me quiero ir a dormir.",
@@ -170,19 +175,19 @@ const GUION = {
       "N: Le temblaban las piernas. Literal.",
       { mover: "Y", x: 104, y: 214 },
       "Y: Ehh... hola. ¿Quién pone la música?",
-      "V: Ni idea, ¡pero está re fuerte!",
+      "V: Yo estoy poniendo. 😎",
       { mover: "A", x: 230, y: 236 },
       "N: Y de repente, todos desaparecieron.",
-      "Y: Hay mucha música... ¿vamos afuera a hablar?",
+      "Y: Está bien fuerte... Hay mucho ruido. ¿Vamos afuera a hablar?",
       { emo: "V", tipo: "corazon" },
-      "V: Dale.",
+      "V: ¡Dale, vamos! 😊",
       "N: Para salir hay que cruzar la pista. Ojo con los disfrazados."
     ],
     despues: [
       "N: Afuera, por fin, se escuchaban.",
       "N: Hablaron un montón. Se rieron más.",
       "Y: ...¿Te puedo dar un beso?",
-      { opciones: ["Sí 💋", "Obvio"] },
+      { opciones: ["Sí 💋", "Sí 🥰"] },
       { efecto: "corazones" },
       "N: Y esa noche se quedaron juntos, hablando y besándose."
     ]
@@ -220,7 +225,7 @@ const GUION = {
       { mover: "V", x: 84, y: 176 }, { mover: "Y", x: 108, y: 176 },
       "Y: ¿Querés venir a ver la obra de arte de un amigo?",
       { emo: "V", tipo: "corazon" },
-      "V: ¡Dale!",
+      "V: ¡Me encantaría! 💕",
       "N: Primera cita: confirmada. Ahora solo falta que el auto no falle.",
       "N: (Spoiler: falló.)"
     ]
@@ -247,7 +252,7 @@ const GUION = {
     ],
     despues: [
       "V: Pollito frito, por favor.",
-      "Y: Hamburguesa. Obvio.",
+      "Y: Y para mí, una hamburguesa.",
       "N: Comieron, hablaron un montón y salieron a caminar.",
       { fondo: "plaza" },
       "N: En la plaza, sentados en un banco...",
@@ -261,21 +266,26 @@ const GUION = {
       "N: Febrero de 2025. Primera merienda.",
       "Y: Che... ¿querés hacer algo el 14?",
       { emo: "V", tipo: "corazon" },
-      "V: Dale.",
-      "Y: (Ya estaba loco por ella.)",
-      "N: 14 de febrero. Ella ya lo estaba esperando. Otra vez el auto. (Llegadas tarde: 2)",
-      "Y: Te traje esto... 💐",
-      "N: Wrap de pollo para él, de cerdo para ella. Y compartieron.",
-      "N: Después, helado. Y un regalo con historia...",
-      "N: Flashback: el último día en el servidor, antes de verse.",
-      "N: Agarrá la rosa y llevala al portaobjetos."
+      "V: ¡Siii, me encantaría! 🥰",
+      "N: Y él se puso re contento.",
+      { fondo: "afuera" }, { poner: "Y", x: 240, y: 262 },
+      "N: 14 de febrero, a la noche. Ella ya lo estaba esperando: otra vez el auto falló. (Llegadas tarde: 2)",
+      { mover: "Y", x: 122, y: 262 },
+      { emo: "Y", tipo: "gota" },
+      "Y: ¡Perdón! El auto otra vez... Te traje esto. 💐",
+      { emo: "V", tipo: "corazon" },
+      "N: Fueron a comer: wrap de pollo para él, de cerdo para ella. Y compartieron.",
+      "N: Después, un helado. Y en una parada, él sacó un regalo con historia...",
+      "N: Para entenderlo hay que volver unos días atrás, al servidor de cubitos que compartían.",
+      "N: El último día que jugaron antes de verse, él le tiró una rosa.",
+      "N: Ayudala a agarrarla y guardarla en el portaobjetos."
     ],
     despues: [
-      "N: Esa rosa ella la guardó en un portaobjetos.",
-      "N: Y él la pintó en un cuadro.",
+      "N: La rosa quedó guardada en el portaobjetos.",
+      "N: Y ese portaobjetos, con la rosa adentro, es lo que él pintó en el cuadro.",
       { emo: "V", tipo: "corazon" },
       "V: ¡¿La pintaste?!",
-      "N: Ella le regaló un cofre de cubitos lleno de cosas galácticas.",
+      "N: Ella también tenía una sorpresa: un cofre de cubitos lleno de cosas galácticas.",
       "Y: (Esta chica es perfecta.)"
     ]
   },
