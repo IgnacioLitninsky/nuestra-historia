@@ -1,0 +1,8 @@
+Poné acá las fotos (JPG). Conviene que pesen menos de 500 KB cada una:
+mandátelas por WhatsApp a vos mismo y descargalas, así ya vienen comprimidas.
+
+Después agregalas en textos.js, en la parte "fotos":
+  { archivo: "fotos/01.jpg", texto: "La noche de Alicia" },
+
+Si querés que una foto reemplace al dibujito de un recuerdo en el álbum,
+poné su nombre en el campo foto de ese nivel (ej.: foto: "fotos/01.jpg").
